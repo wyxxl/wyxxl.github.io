@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2023-03-27T10:36:18.245Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2023/03/27/hello-world/"/>
+    <id>http://example.com/2023/03/27/hello-world/</id>
+    <published>2023-03-27T07:10:16.368Z</published>
+    <updated>2023-03-27T10:36:18.245Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><p><img src="/images/image-20230327181147718.png" alt="image-20230327181147718"></p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>buildroot构建mips32调试环境</title>
+    <link href="http://example.com/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/"/>
+    <id>http://example.com/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/</id>
+    <published>2021-03-20T01:29:30.000Z</published>
+    <updated>2023-03-28T02:18:45.568Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x01-编译配置"><a href="#0x01-编译配置" class="headerlink" title="0x01.编译配置"></a>0x01.编译配置</h2><p>使用buildroot可构建uboot，内核，根文件系统等。</p><p>可直接下载解压链接：<a href="https://buildroot.org/download.html">https://buildroot.org/download.html</a></p><pre><code class="shell"># 安装依赖库$ sudo apt-get update$ sudo apt-get install libncurses5-dev patch # 下载源码$ git clone https://github.com/buildroot/buildroot.git # 进行编译的配置$ cd buildroot</code></pre><p>通过<code>ls configs</code>可以查看支持的一些架构信息</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210809185516849.png" alt="image-20210809185516849"></p><p>这些config可以生成qemu用的vmlinux还有rootfs，这里我们的目的是生成mips64为的qemu镜像，键入命令</p><pre><code class="shell">make qemu_mips32r2_malta_defconfig</code></pre><p>接着执行</p><pre><code class="shell">make menuconfig</code></pre><p>选择更具体的编译选项。</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210809195839676.png" alt="image-20210809195839676"></p><p>Toolchain 的选择：</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210809200858241.png" alt="image-20210809200858241"></p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210809200929756.png" alt="image-20210809200929756"></p><p>Target packahges选项。</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210809201338793.png" alt="image-20210809201338793"></p><p>在 <code>Debugging, profiling and benchmark</code>中勾选<code>dt</code>和<code>starce</code>、<code>gdb</code></p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210809201722695.png" alt="image-20210809201722695"></p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210809201757257.png" alt="image-20210809201757257"></p><p>在<code>&gt; Target packages &gt; Networking applications</code>中选中<code>netcat</code> <code>nmap</code> <code>ncat</code> <code>openssh</code></p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210809202051415.png" alt="image-20210809202051415"></p><p>之后save退出,make开始编译。</p><pre><code class="shell">make</code></pre><p>编译完成后可以在output-&gt;images文件夹下看到编译好的内核、文件系统、启动脚本。</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210810121656958.png" alt="image-20210810121656958"></p><h2 id="0x02-mips系统网络配置"><a href="#0x02-mips系统网络配置" class="headerlink" title="0x02.mips系统网络配置"></a>0x02.mips系统网络配置</h2><p>使用qemu模拟mips系统前，先在ubuntu系统做如下操作</p><p>1.获取安装依赖文件</p><pre><code class="shell">sudo apt-get install uml-utilities bridge-utils</code></pre><p>2.修改Ubuntu 主机网络配置。将Ubuntu系统中网络接口配置文件&#x2F;etc&#x2F;network&#x2F;interfaces 修改为如下内容并保存。</p><pre><code class="shell">auto loiface lo inet loopbackauto ens33iface ens33 inet dhcpauto br0iface br0 inet dhcp bridge_ports ens33 bridge_maxwait 0</code></pre><p>3.创建qemu网络接口启动脚本，重启网络使配置生效。使用如下命令创建并编辑&#x2F;etc&#x2F;qemu-ifup 文件</p><pre><code class="shell">echo &quot;Executing /etc/qemu-ifup&quot;echo &quot;Bringing $1 for bridged mode ...&quot;sudo /sbin/ifconfig $1 0.0.0.0 promisc upecho &quot;Adding $1 to br0...&quot;sudo /sbin/brctl addif br0 $1sleep 3</code></pre><p>保存文件后，使用如下命令修改qemu-ifup权限，重启网络使所有配置生效。</p><pre><code class="shell">sudo chmod 777 /etc/qemu-ifupsudo /etc/init.d/networking restart</code></pre><p>4.启动桥接网络</p><pre><code class="shell">sudo ifdown eth0sudo ifup br0</code></pre><p>5.将start-qemu.sh启动脚本修改为如下内容。</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210810163309812.png" alt="image-20210810163309812"></p><p>原文件内容</p><pre><code class="shell">#!/bin/sh(BINARIES_DIR=&quot;$&#123;0%/*&#125;/&quot;cd $&#123;BINARIES_DIR&#125;if [ &quot;$&#123;1&#125;&quot; = &quot;serial-only&quot; ]; then    EXTRA_ARGS=&#39;-nographic&#39;else    EXTRA_ARGS=&#39;-serial stdio&#39;fiexport PATH=&quot;/home/tangle/Desktop/buildroot-2021.05/output/host/bin:$&#123;PATH&#125;&quot;exec qemu-system-mips -M malta -kernel vmlinux  -drive file=rootfs.ext2,format=raw -append &quot;rootwait root=/dev/hda&quot; -net nic,model=pcnet -net user  $&#123;EXTRA_ARGS&#125;)</code></pre><p>修改后：</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210810163239855.png" alt="image-20210810163239855"></p><p>启动脚本</p><pre><code class="shell">sudo ./start-qemu.sh</code></pre><p>发现如下报错</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210810164054901.png" alt="image-20210810164054901"></p><p>说明qemu默认启动qemu-ifup脚本是到<code>/home/tangle/Desktop/buildroot-2021.05/output/host/bin/../etc/qemu-ifup</code></p><p>这个目录下寻找，而上面是在<code>/etc/qemu-ifup</code> 目录下创建的，所以将<code>/etc/qemu-ifup</code>复制到<code>/home/tangle/Desktop/buildroot-2021.05/output/host/bin/../etc/qemu-ifup</code>即可。</p><p>修改后重新启动脚本进入mips系统。</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210810165053184.png" alt="image-20210810165053184"></p><p>给eth0网卡设置ip，ubuntu系统ip是<code>192.168.2.131</code></p><pre><code class="shell">ifconfig eth0 192.168.2.111</code></pre><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210810192746557.png" alt="image-20210810192746557"></p><p>测试和ubuntu系统的通信。</p><p><img src="/2021/03/20/buildroot%E6%9E%84%E5%BB%BAmips32%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/image-20210810192937951.png" alt="image-20210810192937951"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;0x01-编译配置&quot;&gt;&lt;a href=&quot;#0x01-编译配置&quot; class=&quot;headerlink&quot; title=&quot;0x01.编译配置&quot;&gt;&lt;/a&gt;0x01.编译配置&lt;/h2&gt;&lt;p&gt;使用buildroot可构建uboot，内核，根文件系统等。&lt;/p&gt;
+&lt;p&gt;可直接下</summary>
+      
+    
+    
+    
+    
+    <category term="sec" scheme="http://example.com/tags/sec/"/>
+    
+    <category term="IoT sec" scheme="http://example.com/tags/IoT-sec/"/>
+    
+  </entry>
+  
+</feed>
